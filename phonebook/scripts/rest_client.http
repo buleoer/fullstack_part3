@@ -1,9 +1,30 @@
 
 
+### Get all persons #################################################
+
+GET http://localhost:3001/api/persons
+
 
 ### Delete person ####################################################
 
-@id_to_delete = 3
+@id_to_delete = 288298
 
 DELETE http://localhost:3001/api/persons/{{id_to_delete}}
+
+
+### Create person #####################################################
+
+@new_person_name = Albert Einstein
+@new_person_number = 123456
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "{{new_person_name}}",
+    "number": "{{new_person_number}}"
+}
+
+
+#####################################################
 

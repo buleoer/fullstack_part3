@@ -1,5 +1,7 @@
 const express = require('express')
+
 const app = express()
+app.use(express.json())
 
 let persons = [
     { 
@@ -45,6 +47,17 @@ app.delete('/api/persons/:id', (request, response) => {
   response.sendStatus(204)
 })
 
+app.post('/api/persons', (request, response) => {
+  const MAX_ID = 1000000
+  //const new_person = request.body
+  //console.log("new_person", new_person)
+  //new_person.id = getRandomInt(MAX_ID)
+
+  const new_person = { id: getRandomInt(MAX_ID).toString(), ...request.body }
+  persons.push(new_person)
+  response.json(new_person)
+})
+
 
 app.get('/info', (request, response) => {
   response.send(`
@@ -57,4 +70,10 @@ const PORT = 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
+
+
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
