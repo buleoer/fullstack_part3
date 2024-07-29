@@ -1,0 +1,9 @@
+
+
+
+### Delete person ####################################################
+
+@id_to_delete = 3
+
+DELETE http://localhost:3001/api/persons/{{id_to_delete}}
+
