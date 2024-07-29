@@ -14,7 +14,7 @@ DELETE http://localhost:3001/api/persons/{{id_to_delete}}
 
 ### Create person #####################################################
 
-@new_person_name = Albert Einstein
+@new_person_name = Arto Huellas
 @new_person_number = 123456
 
 POST http://localhost:3001/api/persons

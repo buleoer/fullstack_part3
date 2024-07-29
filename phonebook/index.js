@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser')
 const express = require('express')
 
 const app = express()
@@ -49,11 +50,26 @@ app.delete('/api/persons/:id', (request, response) => {
 
 app.post('/api/persons', (request, response) => {
   const MAX_ID = 1000000
-  //const new_person = request.body
-  //console.log("new_person", new_person)
-  //new_person.id = getRandomInt(MAX_ID)
+  const body = request.body
 
-  const new_person = { id: getRandomInt(MAX_ID).toString(), ...request.body }
+  if (!body.name) {
+    return response.status(400).json({ 
+      error: 'Name missing!'
+    })
+  }
+
+  if (persons.find(p => p.name === body.name)) {
+    return response.status(400).json({ 
+      error: `The name "${body.name}" is already present in the phone book!`
+    })
+  }
+
+  const new_person = {
+    id: getRandomInt(MAX_ID).toString(),
+    name: body.name,
+    number: body.number
+  }
+
   persons.push(new_person)
   response.json(new_person)
 })
