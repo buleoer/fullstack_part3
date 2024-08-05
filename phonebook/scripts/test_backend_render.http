@@ -1,0 +1,13 @@
+@server = fullstack-part3-bhj2.onrender.com
+
+
+
+### Info page #########################################################
+
+GET http://{{server}}/info
+
+
+### Get all persons ###################################################
+
+GET http://{{server}}/api/persons
+

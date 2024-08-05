@@ -1,13 +1,24 @@
 
+### Info page #########################################################
 
-### Get all persons #################################################
+GET http://localhost:3001/info
+
+
+### Get all persons ###################################################
 
 GET http://localhost:3001/api/persons
 
 
-### Delete person ####################################################
+### Return single entry ###############################################
 
-@id_to_delete = 288298
+@id = 2
+
+GET http://localhost:3001/api/persons/{{id}}
+
+
+### Delete person #####################################################
+
+@id_to_delete = 2
 
 DELETE http://localhost:3001/api/persons/{{id_to_delete}}
 
