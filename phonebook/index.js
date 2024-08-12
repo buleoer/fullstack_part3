@@ -6,6 +6,7 @@ const cors = require('cors')
 const app = express()
 app.use(express.json())
 
+
 //app.use(morgan('tiny'))
 morgan.token('body', (request, response) => {
   if (request.method === "POST") {
@@ -24,22 +25,22 @@ app.use(express.static('dist'))
 let persons = [
     { 
       "id": "1",
-      "name": "Arto Hellas", 
+      "name": "Arthas Menethil", 
       "number": "040-123456"
     },
     { 
       "id": "2",
-      "name": "Ada Lovelace", 
+      "name": "Tirion Fordring", 
       "number": "39-44-5323523"
     },
     { 
       "id": "3",
-      "name": "Dan Abramov", 
+      "name": "Varian Wrynn", 
       "number": "12-43-234345"
     },
     { 
       "id": "4",
-      "name": "Mary Poppendieck", 
+      "name": "Jaina Proudmoore", 
       "number": "39-23-6423122"
     }
 ]
@@ -63,6 +64,13 @@ app.delete('/api/persons/:id', (request, response) => {
   const id = request.params.id
   persons = persons.filter(p => p.id != id)
   response.sendStatus(204)
+})
+
+app.put('/api/persons/:id', (request, response) => {
+  const id = request.params.id
+  const updated_person = request.body
+  persons = persons.map(p => p.id === id ? updated_person : p )
+  response.sendStatus(200)
 })
 
 app.post('/api/persons', (request, response) => {
